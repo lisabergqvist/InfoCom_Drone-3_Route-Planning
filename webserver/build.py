@@ -44,7 +44,7 @@ def get_location():
         latitude = float(redis_server.get('latitude'))
         x_svg, y_svg = translate((longitude, latitude))
         emit('get_location', (x_svg, y_svg))
-        time.sleep(0.01)
+        time.sleep(0.001)
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port='5000')

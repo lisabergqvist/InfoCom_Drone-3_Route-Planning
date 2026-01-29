@@ -16,6 +16,8 @@ def your_function():
 def travel(start, end, session, SERVER_URL):
     x1, y1 = start
     x2, y2 = end
+    #start = x1, y1
+    #end = x2, y2
     
     steps = int(math.sqrt((x2 - x1)**2 + (y2 - y1)**2) * 10000) + 1
     
@@ -29,13 +31,9 @@ def travel(start, end, session, SERVER_URL):
         }
         
         session.post(SERVER_URL, json=drone_location)
+        time.sleep(0.05)
 #====================================================================================================
 
-
-def run(current_coords, from_coords, to_coords, SERVER_URL):
-    with requests.Session() as session:
-        travel(current_coords, from_coords, session, SERVER_URL)
-        travel(from_coords, to_coords, session, SERVER_URL)
     # Complete the while loop:
     # 1. Change the loop condition so that it stops sending location to the data base when the drone arrives the to_address
     # 2. Plan a path with your own function, so that the drone moves from [current_address] to [from_address], and the from [from_address] to [to_address]. 
@@ -49,6 +47,11 @@ def run(current_coords, from_coords, to_coords, SERVER_URL):
     #                    }
     #        resp = session.post(SERVER_URL, json=drone_location)       
   #====================================================================================================
+
+def run(current_coords, from_coords, to_coords, SERVER_URL):
+    with requests.Session() as session:
+        travel(current_coords, from_coords, session, SERVER_URL)
+        travel(from_coords, to_coords, session, SERVER_URL)
 
    
 if __name__ == "__main__":
